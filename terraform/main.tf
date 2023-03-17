@@ -100,8 +100,8 @@ resource "aws_ecs_service" "mongodb_aws_ecs" {
 
   network_configuration {
     assign_public_ip = true
-    security_groups  = var.security_groups
-    subnets          = var.subnets
+    security_groups  = [aws_security_group.main.id]
+    subnets          = [aws_subnet.subnet1.id]
   }
 
   timeouts {}

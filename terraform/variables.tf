@@ -1,13 +1,3 @@
-variable "security_groups" {
-  description = "The VPC security groups to use"
-  type        = list(string)
-}
-
-variable "subnets" {
-  description = "The VPC subnets to use"
-  type        = list(string)
-}
-
 variable "execution_role_arn" {
   description = "The execution role ARN to use"
   type        = string
@@ -22,6 +12,26 @@ variable "aws_profile" {
   description = "AWS Profile"
   type        = string
   default     = "default"
+}
+
+variable "atlas_public_key" {
+  description = "MongoDB Atlas Public Key"
+  type        = string
+}
+
+variable "atlas_private_key" {
+  description = "MongoDB Atlas Private Key"
+  type        = string
+}
+
+variable "project_id" {
+  description = "Atlas Existing Project ID Key"
+  type        = string
+}
+
+variable "provisioning_address_cdr" {
+  description = "Your provisioning address cidr block"
+  type        = string
 }
 
 variable "MONGODB_URI" {
