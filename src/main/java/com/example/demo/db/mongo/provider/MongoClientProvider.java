@@ -20,15 +20,10 @@ import com.mongodb.client.result.InsertOneResult;
 @Configuration
 public class MongoClientProvider {
   Logger logger = LoggerFactory.getLogger(MongoClientProvider.class);
-  private MongoClient mongoClient;
 
   public MongoClientProvider() {
-    init();
-  }
-
-  public MongoClient init() {
     String uri = System.getenv("MONGODB_URI");
-    this.mongoClient = MongoClients.create(
+    MongoClient mongoClient = MongoClients.create(
         uri);
 
     MongoDatabase database = mongoClient.getDatabase("test");
@@ -55,8 +50,6 @@ public class MongoClientProvider {
 
     mongoClient.close();
     logger.info("mongoClient closed");
-
-    return this.mongoClient;
-
   }
+
 }
