@@ -29,11 +29,6 @@ variable "project_id" {
   type        = string
 }
 
-variable "provisioning_address_cdr" {
-  description = "Your provisioning address cidr block"
-  type        = string
-}
-
 variable "MONGODB_URI" {
   description = "MongoDB Atlas URI"
   type        = string
