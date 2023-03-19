@@ -3,18 +3,6 @@ resource "aws_ecs_cluster" "cluster" {
   tags = local.tags
 }
 
-resource "aws_ecs_cluster_capacity_providers" "capacity_provider" {
-  cluster_name = aws_ecs_cluster.cluster.name
-
-  capacity_providers = ["FARGATE"]
-
-  default_capacity_provider_strategy {
-    base              = 1
-    weight            = 100
-    capacity_provider = "FARGATE"
-  }
-}
-
 resource "aws_cloudwatch_log_group" "mongodb_aws_ecs" {
   name              = "mongodb_aws_ecs"
   retention_in_days = 1
@@ -85,7 +73,7 @@ resource "aws_ecs_service" "mongodb_aws_ecs" {
 
   capacity_provider_strategy {
     base              = 1
-    capacity_provider = "FARGATE"
+    capacity_provider = "FARGATE_SPOT"
     weight            = 100
   }
 
@@ -105,4 +93,8 @@ resource "aws_ecs_service" "mongodb_aws_ecs" {
   }
 
   timeouts {}
+
+  depends_on = [
+    mongodbatlas_advanced_cluster.cluster
+  ]
 }
